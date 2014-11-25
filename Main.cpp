@@ -16,8 +16,6 @@ int main()
     setItem();
     setInventory();
 
-    printInventory();
-
     Font font;
     if (!font.loadFromFile("SSDD.ttf"))
         return EXIT_FAILURE;
@@ -78,6 +76,7 @@ int main()
                     strstream.str(str);
                     strstream >> integer.x;
                     prevInt = integer.x;
+                    addItem(prevInt, 1);
                     if (integer.x < ((itemset.getSize().x/tile)*(itemset.getSize().y/tile)))
                     {
                         getItem(integer.x);
@@ -96,6 +95,8 @@ int main()
             {
                 if (Mouse::isButtonPressed(Mouse::Left))
                     getItem(prevInt);
+                else
+                    printInventory();
             }
         }
         Vector2i mouse_position(Mouse::getPosition(window));

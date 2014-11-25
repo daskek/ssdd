@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector< std::string > items;
+vector< string > items;
 vector< unsigned > items_value;
 
 void setItem()
@@ -39,5 +39,8 @@ void getItem(unsigned id)
 
 string getItemName(unsigned id)
 {
-    return items[id];
+    if (id >= 0 and id <= items.size())
+        return items[id];
+    else
+        return "Unknown";
 }
