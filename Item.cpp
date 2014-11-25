@@ -1,14 +1,17 @@
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "Item.h"
 
-std::vector< std::string > items;
-std::vector< unsigned > items_value;
+using namespace std;
+
+vector< std::string > items;
+vector< unsigned > items_value;
 
 void setItem()
 {
-    items.push_back("");
+    items.push_back("Null");
     items_value.push_back(0);
 
     items.push_back("Fish");
@@ -22,14 +25,19 @@ void setItem()
 
 void getItem(unsigned id)
 {
-    if (id < items.size() and id > 0)
+    if (id < items.size() and id >= 0)
     {
-        std::cout << "ID: " << id << " - "<< items[id] << " - Value: " << items_value[id] << std::endl;
+        cout << "ID: " << id << " - " << items[id] << " - Value: " << items_value[id] << endl;
     }
     else if (id > 0)
     {
-        std::cout << "ID: " << id << std::endl;
+        cout << "ID: " << id << endl;
     }
 
     return;
+}
+
+string getItemName(unsigned id)
+{
+    return items[id];
 }

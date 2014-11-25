@@ -1,21 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <sstream>
-#include "Item.h"
 
-#define tile 32
+#include "Config.h"
+#include "Inventory.h"
+#include "Item.h"
+#include "ItemList.h"
 
 using namespace sf;
 
-unsigned fps = 60;
-
-std::string str = "";
-
-std::stringstream strstream;
+Vector2u integer(0, 0);
 
 int main()
 {
     setItem();
+    setInventory();
+
+    printInventory();
+
     Font font;
     if (!font.loadFromFile("SSDD.ttf"))
         return EXIT_FAILURE;
@@ -69,11 +71,13 @@ int main()
             {
                 if (event.key.code == Keyboard::Return)
                 {
-                    Vector2u integer(0, 0);
+                    integer.x = 0;
+                    integer.y = 0;
                     strstream.clear();
                     strstream.str("");
                     strstream.str(str);
                     strstream >> integer.x;
+                    prevInt = integer.x;
                     if (integer.x < ((itemset.getSize().x/tile)*(itemset.getSize().y/tile)))
                     {
                         getItem(integer.x);
@@ -87,6 +91,11 @@ int main()
                     str = "";
                     text.setString(str);
                 }
+            }
+            else if (event.type == Event::MouseButtonPressed)
+            {
+                if (Mouse::isButtonPressed(Mouse::Left))
+                    getItem(prevInt);
             }
         }
         Vector2i mouse_position(Mouse::getPosition(window));
