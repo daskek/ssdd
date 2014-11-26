@@ -6,6 +6,4 @@
 #define item_fish 1
 #define item_wood 2
 
-void setItemList();
-
 #endif // ITEMLIST_H
