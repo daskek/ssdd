@@ -85,6 +85,9 @@ int main()
 
     while (window.isOpen())
     {
+        Vector2i mouse_position(Mouse::getPosition(window));
+        item.setPosition(mouse_position.x-16, mouse_position.y-16);
+
         Event event;
         while (window.pollEvent(event))
         {
@@ -141,17 +144,24 @@ int main()
             }
             else if (event.type == Event::MouseButtonPressed)
             {
-                unsigned number = 1;
-                if (event.key.code == Keyboard::LShift)
-                    number = 9;
                 if (Mouse::isButtonPressed(Mouse::Left))
-                    addItem(prevInt, number);
+                    {
+                        if (mouse_position.x >= tile*11 and mouse_position.y >= tile*7)
+                            addItem(prevInt, 1);
+                        else
+                            removeItem(prevInt, 1);
+                    }
                 else if (Mouse::isButtonPressed(Mouse::Right))
-                    removeItem(prevInt, number);
+                {
+                    {
+                        if (mouse_position.x >= tile*11 and mouse_position.y >= tile*7)
+                            addItem(prevInt, 8);
+                        else
+                            removeItem(prevInt, 8);
+                    }
+                }
             }
         }
-        Vector2i mouse_position(Mouse::getPosition(window));
-        item.setPosition(mouse_position.x-16, mouse_position.y-16);
 
         window.clear(Color(216, 248, 120, 0));
 

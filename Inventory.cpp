@@ -57,7 +57,6 @@ void addItem(unsigned item, unsigned number)
                 inventory[invSlot][1]++;
                 number--;
                 itemsAdded++;
-                break;
             }
         }
     }
@@ -68,7 +67,7 @@ void addItem(unsigned item, unsigned number)
 void removeItem(unsigned item, unsigned number)
 {
     unsigned itemsRemoved = 0;
-    for (unsigned invSlot = 15; invSlot > 0; invSlot--)
+    for (int invSlot = 15; invSlot >= 0; invSlot--)
     {
         if (inventory[invSlot][0] == item  and item > 0)
         {
@@ -79,7 +78,6 @@ void removeItem(unsigned item, unsigned number)
                     inventory[invSlot][0] = 0;
                 number--;
                 itemsRemoved++;
-                break;
             }
         }
     }

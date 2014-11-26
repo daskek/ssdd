@@ -10,6 +10,8 @@ vector< string > items;
 vector< unsigned > items_maxStack;
 vector< unsigned > items_value;
 
+unsigned defaultStack = 8;
+
 void setItem()
 {
     items.push_back("Null");
@@ -17,11 +19,11 @@ void setItem()
     items_value.push_back(0);
 
     items.push_back("Fish");
-    items_maxStack.push_back(9);
+    items_maxStack.push_back(defaultStack);
     items_value.push_back(2);
 
     items.push_back("Wood");
-    items_maxStack.push_back(9);
+    items_maxStack.push_back(defaultStack);
     items_value.push_back(2);
 
     return;
