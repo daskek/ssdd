@@ -46,57 +46,70 @@ void printInventory()
 
 void addItem(unsigned item, unsigned number)
 {
-    unsigned itemsAdded = 0;
-    for (unsigned invSlot = 0; invSlot < invSlots; invSlot++)
+    if (getItemSize() > item)
     {
-        if ((inventory[invSlot][0] == item or inventory[invSlot][0] == 0) and item > 0)
+        unsigned itemsAdded = 0;
+        for (unsigned invSlot = 0; invSlot < invSlots; invSlot++)
         {
-            while (inventory[invSlot][1] < getMaxStack(item) and number > 0)
+            if ((inventory[invSlot][0] == item or inventory[invSlot][0] == 0) and item > 0)
             {
-                inventory[invSlot][0] = item;
-                inventory[invSlot][1]++;
-                number--;
-                itemsAdded++;
+                while (inventory[invSlot][1] < getMaxStack(item) and number > 0)
+                {
+                    inventory[invSlot][0] = item;
+                    inventory[invSlot][1]++;
+                    number--;
+                    itemsAdded++;
+                }
             }
         }
+        cout << "Added " << itemsAdded << " "<< getItemName(item) << " to inventory. - ID: " << item << " - Max Stack: " << getMaxStack(item) << endl;
     }
-    cout << "Added " << itemsAdded << " "<< getItemName(item) << " to inventory. - ID: " << item << " - Max Stack: " << getMaxStack(item) << endl;
     return;
 }
 
 void removeItem(unsigned item, unsigned number)
 {
-    unsigned itemsRemoved = 0;
-    for (int invSlot = 15; invSlot >= 0; invSlot--)
+    if (getItemSize() > item)
     {
-        if (inventory[invSlot][0] == item  and item > 0)
+        unsigned itemsRemoved = 0;
+        for (int invSlot = 15; invSlot >= 0; invSlot--)
         {
-            while (inventory[invSlot][1] > 0 and number > 0)
+            if (inventory[invSlot][0] == item  and item > 0)
             {
-                inventory[invSlot][1]--;
-                if (inventory[invSlot][1] == 0)
-                    inventory[invSlot][0] = 0;
-                number--;
-                itemsRemoved++;
+                while (inventory[invSlot][1] > 0 and number > 0)
+                {
+                    inventory[invSlot][1]--;
+                    if (inventory[invSlot][1] == 0)
+                        inventory[invSlot][0] = 0;
+                    number--;
+                    itemsRemoved++;
+                }
             }
         }
+        cout << "Removed " << itemsRemoved << " " << getItemName(item) << " from inventory. - ID: " << item << " - Max Stack: " << getMaxStack(item) << endl;
     }
-    cout << "Removed " << itemsRemoved << " " << getItemName(item) << " from inventory. - ID: " << item << " - Max Stack: " << getMaxStack(item) << endl;
     return;
 }
 
 unsigned checkItem(unsigned item)
 {
-    unsigned number = 0;
-    for (unsigned invSlot = 0; invSlot < invSlots; invSlot++)
+    if (getItemSize() > item)
     {
-        if (inventory[invSlot][0] == item and item > 0)
+        unsigned number = 0;
+        for (unsigned invSlot = 0; invSlot < invSlots; invSlot++)
         {
-            number += inventory[invSlot][1];
+            if (inventory[invSlot][0] == item and item > 0)
+            {
+                number += inventory[invSlot][1];
+            }
         }
+        cout << "There is " << number << " " << getItemName(item) << " in inventory. - ID: " << item << " - Max Stack: " << getMaxStack(item) << endl;
+        return number;
     }
-    cout << "There is " << number << " " << getItemName(item) << " in inventory. - ID: " << item << " - Max Stack: " << getMaxStack(item) << endl;
-    return number;
+    else
+    {
+        return 0;
+    }
 }
 
 unsigned getInvItem(unsigned invSlot)

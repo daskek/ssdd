@@ -26,6 +26,13 @@ void setItem()
     items_maxStack.push_back(defaultStack);
     items_value.push_back(2);
 
+    for (unsigned item = 0; item <= 60; item++)
+    {
+        items.push_back("Unknown");
+        items_maxStack.push_back(defaultStack);
+        items_value.push_back(0);
+    }
+
     return;
 }
 
@@ -54,4 +61,9 @@ string getItemName(unsigned id)
 unsigned getMaxStack(unsigned id)
 {
     return items_maxStack[id];
+}
+
+unsigned getItemSize()
+{
+    return items.size();
 }

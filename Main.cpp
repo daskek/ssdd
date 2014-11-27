@@ -40,7 +40,7 @@ int main()
     for (unsigned items = 0; items < 16; items++)
     {
         inv_number[items].setFont(font);
-        inv_number[items].setCharacterSize(8);
+        inv_number[items].setCharacterSize(16);
         inv_number[items].setColor(Color::Black);
     }
 
@@ -52,22 +52,22 @@ int main()
         if (items >= 12)
         {
             inv_item[items].setPosition(tile*(0+items), tile*(11));
-            inv_number[items].setPosition(2+tile*(0+items), 2+tile*(11));
+            inv_number[items].setPosition(1+tile*(0+items), -5+tile*(11));
         }
         else if (items >= 8)
         {
             inv_item[items].setPosition(tile*(4+items), tile*(10));
-            inv_number[items].setPosition(2+tile*(4+items), 2+tile*(10));
+            inv_number[items].setPosition(1+tile*(4+items), -5+tile*(10));
         }
         else if (items >= 4)
         {
             inv_item[items].setPosition(tile*(8+items), tile*(9));
-            inv_number[items].setPosition(2+tile*(8+items), 2+tile*(9));
+            inv_number[items].setPosition(1+tile*(8+items), -5+tile*(9));
         }
         else
         {
             inv_item[items].setPosition(tile*(12+items), tile*(8));
-            inv_number[items].setPosition(2+tile*(12+items), 2+tile*(8));
+            inv_number[items].setPosition(1+tile*(12+items), -5+tile*(8));
         }
     }
 
@@ -151,7 +151,7 @@ int main()
                         else
                             removeItem(prevInt, 1);
                     }
-                else if (Mouse::isButtonPressed(Mouse::Right))
+                if (Mouse::isButtonPressed(Mouse::Right))
                 {
                     {
                         if (mouse_position.x >= tile*11 and mouse_position.y >= tile*7)
