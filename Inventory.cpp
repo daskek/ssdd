@@ -4,10 +4,11 @@
 #include "Inventory.h"
 #include "Item.h"
 
+#define invSlots 16
+
 using namespace std;
 
 unsigned inventory[16][2];
-unsigned invSlots = 16;
 
 void setInventory()
 {
